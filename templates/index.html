@@ -1,1 +1,82 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo - Nikhila Dharmaji </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <style>
+        #result {
+            font-size: 15px;
+            width: 30%;
+        }
+
+        #result .header {
+            color: white;
+            font-size: 18px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="input-field col l12 m12 s12">
+                <h5>Currency Formatter Demo - Nikhila Dharmaji </h5>
+            </div>
+            <div class="input-field col s6">
+                <div>Currency Value : <input type="text" id="raw_value" placeholder="Enter Currency Value"></div>
+                <div>Currency Code : <input type="text" id="raw_code" placeholder="Enter Currency Code"></div>
+                <div>Currency format : <input type="text" id="raw_format" placeholder="Enter Currency format"></div>
+                <div>Locale : <input type="text" id="locale" placeholder="Enter Locale"></div>
+                <div><a class="waves-effect waves-light btn" id="submit">Submit</a></div>
+            </div>
+        </div>
+        <div id="result" class="card-panel red lighten-1 hidden"> 
+            <div class="header"> Result </div>
+            <div class="value"> </div>
+        </div>
+        <div id="error"></div>
+        
+    </div>
+    <script>
+        $('#submit').on('click', function(e){
+            var value = $("#raw_value").val();
+            var code = $("#raw_code").val();
+            var format = $("#raw_format").val();
+            var locale = $("#locale").val();
+
+
+            $.ajax({
+                url: '/api/v1/currency',
+                data: {
+                    value: value,
+                    code: code,
+                    format: format,
+                    locale: locale
+                },
+                type: 'GET',
+                success: function(result) {
+                    var resultBox = $('#result');
+                    resultBox.find('.value').text(result);
+                    resultBox.removeClass('hidden');
+                }
+            });
+        
+        });
+    </script>
+</body>
+
+</html>
