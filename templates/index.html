@@ -41,7 +41,7 @@
                 <div>Currency Value : <input type="text" id="raw_value" placeholder="Enter Currency Value"></div>
                 <div>Currency Code : <input type="text" id="raw_code" placeholder="Enter Currency Code"></div>
                 <div>Currency format : <input type="text" id="raw_format" placeholder="Enter Currency format"></div>
-                <div>Locale : <input type="text" id="locale" placeholder="Enter Locale"></div>
+                <div>Locale : <input type="text" id="culture" placeholder="Enter Locale"></div>
                 <div><a class="waves-effect waves-light btn" id="submit">Submit</a></div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             var value = $("#raw_value").val();
             var code = $("#raw_code").val();
             var format = $("#raw_format").val();
-            var locale = $("#locale").val();
+            var culture = $("#culture").val();
 
 
             $.ajax({
@@ -66,7 +66,7 @@
                     value: value,
                     code: code,
                     format: format,
-                    locale: locale
+                    culture: culture
                 },
                 type: 'GET',
                 success: function(result) {
