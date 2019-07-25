@@ -23,8 +23,8 @@ def api():
 	    cformat = request.args['format']
 	if 'culture' in request.args:
 		culture = request.args['culture']
-	if not 'culture' in request.args:
-		culture = "en-gb"	
+	elif not 'culture' in request.args:
+	 	culture = "en-gb"	
 
 	else:
 		return "Parameters Missing"
